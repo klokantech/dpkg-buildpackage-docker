@@ -5,22 +5,20 @@ import subprocess
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('src', help='debianized directory')
-    parser.add_argument('dst', help='output directory')
+    parser.add_argument('src', help='debianized source directory')
     parser.add_argument(
         'extra_args',
         nargs=argparse.REMAINDER,
         help='extra arguments for dpkg-buildpackage')
     args = parser.parse_args()
-    build(args.src, args.dst, args.extra_args)
+    build(args.src, args.extra_args)
 
 
-def build(src, dst, extra_args=None):
+def build(src, extra_args=None):
     """Build a package."""
     if extra_args is None:
         extra_args = []
     src = realpath(src)
-    dst = realpath(dst)
     dockerfile_path = os.path.join(src, 'debian', 'Dockerfile')
     if os.path.exists(dockerfile_path):
         image = 'dpkg-buildpackage/' + os.path.basename(src)
@@ -31,7 +29,6 @@ def build(src, dst, extra_args=None):
     args = [
         'run', '--rm',
         '-v', '{}/:/mnt/src/'.format(src),
-        '-v', '{}/:/mnt/dst/'.format(dst),
         '-v', '/var/cache/pip/:/var/cache/pip/',
         image,
     ]

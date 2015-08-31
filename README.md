@@ -21,12 +21,12 @@ git+https://github.com/klokan/dpkg-buildpackage-docker.git@master#egg=dpkg-build
 ## Usage
 
 ```shell
-$ dpkg-buildpackage-docker .../src .../dst
+$ dpkg-buildpackage-docker .../src
 ```
 
 The source directory must be properly debianized, ie. it must
 contain a valid `debian` subdirectory. The resulting `.deb`
-package will be placed in the destination directory.
+package will be placed in the same directory.
 
 The base image contains essential packages for building software,
 including Python. If extra tools are needed, you can specify

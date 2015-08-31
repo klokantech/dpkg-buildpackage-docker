@@ -6,7 +6,7 @@ if [ "$1" = 'dpkg-buildpackage' ]; then
     cp -r /mnt/src/ $TMP
     cd $TMP/src
     "$@"
-    mv $TMP/*.deb /mnt/dst/
+    mv $TMP/*.deb /mnt/src/
     exit 0
 fi
 
