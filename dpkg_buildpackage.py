@@ -29,7 +29,6 @@ def build(src, extra_args=None):
     args = [
         'run', '--rm',
         '-v', '{}/:/mnt/src/'.format(src),
-        '-v', '/var/cache/pip/:/var/cache/pip/',
         image,
     ]
     if extra_args:
