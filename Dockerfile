@@ -18,4 +18,3 @@ RUN apt-get -qq update && apt-get -qq -y --no-install-recommends install \
 RUN easy_install pip
 
 COPY docker-entrypoint.sh /
-COPY pip.conf /etc/
